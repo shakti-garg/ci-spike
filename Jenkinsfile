@@ -1,9 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /Users/lalitpandey/.m2:/root/.m2'
-        }
+        label 'my-defined-label'
     }
     stages {
         stage('Build') {
