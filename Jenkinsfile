@@ -8,17 +8,24 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests'
             }
         }
+
         stage('Unit Test') {
             steps {
-                sh 'mvn test'
+                sh 'mvn clean test'
             }
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'
                 }
+            }
+        }
+
+        stage('Code Coverage') {
+            steps {
+                sh 'mvn jacoco:check'
             }
         }
     }
