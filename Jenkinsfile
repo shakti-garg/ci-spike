@@ -14,7 +14,7 @@ pipeline {
 
         stage('Unit Test') {
             steps {
-                sh 'mvn clean test'
+                sh 'mvn test'
             }
             post {
                 always {
@@ -25,7 +25,7 @@ pipeline {
 
         stage('Code Coverage') {
             steps {
-                sh 'mvn jacoco:check'
+                sh 'mvn verify -DskipTests'
             }
         }
     }
