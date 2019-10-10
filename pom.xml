@@ -11,6 +11,7 @@
     <properties>
         <min.cyclomatic.complexity.check>1.00</min.cyclomatic.complexity.check>
         <min.instruction.coverage.check>1.00</min.instruction.coverage.check>
+        <java.version>1.8</java.version>
     </properties>
 
     <build>
@@ -19,8 +20,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
 
@@ -87,9 +88,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.10.0</version>
+                <configuration>
+                    <targetJdk>${java.version}</targetJdk>
+                </configuration>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
                         <goals>
                             <goal>pmd</goal>
                             <goal>check</goal>
